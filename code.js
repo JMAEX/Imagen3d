@@ -27,11 +27,11 @@ function init() {
     hlight = new THREE.AmbientLight(0x404040, 100);
     scene.add(hlight);
 
-    directionalLight = new THREE.DirectionalLight(0xffffff, 100);
-    directionalLight.position.set(0, 1, 0);
+    directionalLight = new THREE.DirectionalLight(0xffffff);
+    directionalLight.position.set(1, 1, 1);
     directionalLight.castShadow = true;
     scene.add(directionalLight);
-    light = new THREE.PointLight(0xc4c4c4, 10);
+    /* light = new THREE.PointLight(0xc4c4c4, 10);
     light.position.set(0, 300, 500);
     scene.add(light);
     light2 = new THREE.PointLight(0xc4c4c4, 10);
@@ -42,7 +42,7 @@ function init() {
     scene.add(light3);
     light4 = new THREE.PointLight(0xc4c4c4, 10);
     light4.position.set(-500, 300, 500);
-    scene.add(light4);
+    scene.add(light4); */
 
 
     //----------------------------Render
@@ -69,6 +69,26 @@ function init() {
         scene.add(gltf.scene);
         animate();
         const controls = new THREE.DragControls([granjer], camera, renderer.domElement);
+    });
+
+    loader.load('./Personajes/Mapache/scene.gltf', function (gltf) {
+        mapache = gltf.scene.children[0];
+        mapache.scale.set(6, 6, 6);
+        mapache.position.x = -500;
+        mapache.position.y = 0;
+        scene.add(gltf.scene);
+        animate();
+        const controls = new THREE.DragControls([mapache], camera, renderer.domElement);
+    });
+
+    loader.load('./Personajes/Diosa/scene.gltf', function (gltf) {
+        Diosa = gltf.scene.children[0];
+        Diosa.scale.set(70, 70, 70);
+        Diosa.position.x = 400;
+        Diosa.position.y = 0;
+        scene.add(gltf.scene);
+        animate();
+        const controls = new THREE.DragControls([Diosa], camera, renderer.domElement);
     });
 }
 function animate() {

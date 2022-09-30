@@ -4,6 +4,11 @@ function init() {
 
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xdddddd);
+
+    var textura = new THREE.TextureLoader();
+    textura.load("./Fondo/fondo.png", function (texture) {
+        scene.background = texture;
+    });
     //texturas
 
     //-----------------------------------------------------------------------Camara
@@ -13,10 +18,10 @@ function init() {
     camera.position.y = 100;
     camera.position.z = 1000;
 
-  /*  const controls = new THREE.OrbitControls(camera, renderer.domElement); */
-   // camera.position.set(0, 20, 100);
-   //camera.position.z = 10
-   // controls.update();
+    /*  const controls = new THREE.OrbitControls(camera, renderer.domElement); */
+    // camera.position.set(0, 20, 100);
+    //camera.position.z = 10
+    // controls.update();
 
     //--------------------------------------Luces
     hlight = new THREE.AmbientLight(0x404040, 100);
@@ -53,7 +58,7 @@ function init() {
         reloj.position.y = 0;
         scene.add(gltf.scene);
         animate();
-        const controls = new THREE.DragControls( [reloj], camera, renderer.domElement );
+        const controls = new THREE.DragControls([reloj], camera, renderer.domElement);
     });
 
     loader.load('./Personajes/Grajero/scene.gltf', function (gltf) {
@@ -63,15 +68,15 @@ function init() {
         granjer.position.y = -200;
         scene.add(gltf.scene);
         animate();
-        const controls = new THREE.DragControls( [granjer], camera, renderer.domElement );
+        const controls = new THREE.DragControls([granjer], camera, renderer.domElement);
     });
 }
 function animate() {
-    requestAnimationFrame( animate );
+    requestAnimationFrame(animate);
 
-	// required if controls.enableDamping or controls.autoRotate are set to true
-	//controls.update();
-	renderer.render( scene, camera );
+    // required if controls.enableDamping or controls.autoRotate are set to true
+    //controls.update();
+    renderer.render(scene, camera);
 }
 
 init();
